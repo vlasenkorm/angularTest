@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vlasenkorm/angularTest/issues"
   },
-  "homepage": "https://github.com/vlasenkorm/angularTest#readme"
+  "homepage": "https://github.com/vlasenkorm/angularTest#readme",
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
 }
