@@ -1,0 +1,19 @@
+{
+  "name": "angulartest",
+  "version": "1.0.0",
+  "description": "test repository for AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlasenkorm/angularTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vlasenkorm/angularTest/issues"
+  },
+  "homepage": "https://github.com/vlasenkorm/angularTest#readme"
+}
