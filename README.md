@@ -12,6 +12,9 @@ npm start
 # rex test
 test
 
+# server JSON
+http://my-json-server.typicode.com/vlasenkorm/server
+
 
 # package script
  "postinstall": "npm run copy-libs",
