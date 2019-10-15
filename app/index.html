@@ -6,64 +6,71 @@
   <title>test-app</title>
   <!-- CSS -->
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css" />
   <!-- Data -->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-resource/angular-resource.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="lib/bower-angular-translate-2.18.1/angular-translate.js"></script>
-  
+
   <!-- Js -->
   <script src="app.module.js"></script>
   <script src="app.translate.js"></script>
   <script src="route-translate.config.js"></script>
-  
+
   <script src="core/core.module.js"></script>
   <script src="core/checkmark/checkmark.filter.js"></script>
-  
   <script src="core/phone/phone.module.js"></script>
   <script src="core/phone/phone.service.js"></script>
-  
+
+
+  <script src="component/home.module.js"></script>
+  <script src="component/about.module.js"></script>
+
+  <script src="crud-detail/crud-detail.module.js"></script>
+  <script src="crud-detail/crud-details.controller.js"></script>
+
   <script src="phone-list/phone-list.module.js"></script>
   <script src="phone-list/phone-list.component.js"></script>
-  
+
   <script src="phone-detail/phone-detail.module.js"></script>
   <script src="phone-detail/phone-detail.component.js"></script>
 
-  
-  <script src="crud/crud.controller.js"></script>
+  <script src="crud-http/crud.module.js"></script>
   <script src="crud-http/crud.controller.js"></script>
+  <script src="services/crud-data-method.js"></script>
+
+
 </head>
 
-<body >
-<!-- Классы navbar и navbar-default (базовые классы меню) -->
-<nav class="navbar navbar-inverse">
-  <!-- Контейнер (определяет ширину Navbar) -->
-  <div class="container-fluid">
-    <!-- Заголовок -->
-    <div class="navbar-header">
-      <!-- Бренд или название сайта (отображается в левой части меню) -->
-      <a  href="https://angularjs.org/">
-        <img src="https://angular-exercises.ninja-squad.com/assets/img/angular.png" height="48"  alt="Angular">
-      </a>
-    </div>
-    <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
-    <div class="collapse navbar-collapse" id="navbar-main">
-      <!-- Содержимое основной части -->
-      <a class="navbar-brand" href="#!/">{{'home' | translate}}</a>
-      <a class="navbar-brand" href="#!/phones">{{'list' | translate}}</a>
-      <a class="navbar-brand" href="#!/crud">{{'crud' | translate}}</a>
-      <a class="navbar-brand" href="#!/crud-http">{{'crud-http' | translate}}</a>
-      <a class="navbar-brand" href="#!/about">{{'about' | translate}}</a>
-      <div class="navbar-right" ng-controller="translateController">
-        <button class="btn btn-default navbar-btn" ng-click="changeLanguage('en')">English</button>
-        <button class="btn btn-default navbar-btn" ng-click="changeLanguage('fr')">French</button>
+<body>
+  <!-- Классы navbar и navbar-default (базовые классы меню) -->
+  <nav class="navbar navbar-inverse">
+    <!-- Контейнер (определяет ширину Navbar) -->
+    <div class="container-fluid">
+      <!-- Заголовок -->
+      <div class="navbar-header">
+        <!-- Бренд или название сайта (отображается в левой части меню) -->
+        <a href="https://angularjs.org/">
+          <img src="https://angular-exercises.ninja-squad.com/assets/img/angular.png" height="48" alt="Angular">
+        </a>
+      </div>
+      <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
+      <div class="collapse navbar-collapse" id="navbar-main">
+        <!-- Содержимое основной части -->
+        <a class="navbar-brand" href="#!/">{{'home' | translate}}</a>
+        <a class="navbar-brand" href="#!/phones">{{'list' | translate}}</a>
+        <a class="navbar-brand" href="#!/crud">{{'crud' | translate}}</a>
+        <a class="navbar-brand" href="#!/about">{{'about' | translate}}</a>
+        <div class="navbar-right" ng-controller="translateController">
+          <button class="btn btn-default navbar-btn" ng-click="changeLanguage('en')">English</button>
+          <button class="btn btn-default navbar-btn" ng-click="changeLanguage('fr')">French</button>
         </div>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <div ng-view></div>
 

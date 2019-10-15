@@ -75,7 +75,9 @@ body {
   font-weight: bold;
 }
 
-
+.simple-border{
+  border-bottom: black solid 2px
+}
 
 /* About */
 .paddingTB60 {padding:60px 0px 60px 0px;}

@@ -1,26 +1,32 @@
-<div class="container" ng-app="crud-http" ng-controller="studentController" ng-cloak>
+<div class="container" ng-app="crud-http" ng-controller="CrudController as crud" ng-cloak>
     
   <h1>AngularJS CRUD-HTTP</h1>
   
   <!--Form-->
-  <form ng-submit="createUser()">
-    <h4>Create User</h4>
-    <div class="form-group" ng-show="userid">
+  <form  ng-submit="crud.createUser()">
+    <h3 >Create User</h3>
+    <div class="form-group" ng-show="crud.userid">
       <label class="control-label col-md-2">ID</label>
       <div class="col-md-4">
-          <input type="number" class="form-control" ng-model="user.id" placeholder="1,2,3.." />
+          <input type="text" class="form-control" ng-model="crud.user.id" placeholder="1,2,3.." />
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-md-2">Name:</label>
       <div class="col-md-4">
-          <input type="text" class="form-control" ng-model="user.name" placeholder="john.." />
+          <input type="text" class="form-control" ng-model="crud.user.name" placeholder="john.." />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2">Age</label>
+      <div class="col-md-4">
+          <input type="text" class="form-control" ng-model="crud.user.age" placeholder="1,2,3.." />
       </div>
     </div>
     <div class="col-md-offset-2 col-md-10">
-    <input type="submit" value="submit" class="btn btn-success btn-sm" ng-show="submit" />    
-    <input type="button" value="update" ng-click="updateUser()" class="btn btn-success btn-sm" ng-show="update" />    
-    <input type="button" value="cancel" ng-click="cancelUpdate()" class="btn btn-danger btn-sm" ng-show="cancel" />    
+    <input type="submit" value="submit" class="btn btn-success btn-sm" ng-show="crud.submit" />    
+    <input type="button" value="update" ng-click="crud.updateUser()" class="btn btn-success btn-sm" ng-show="crud.update" />    
+    <input type="button" value="cancel" ng-click="crud.cancelUpdatee()" class="btn btn-danger btn-sm" ng-show="crud.cancel" />    
     </div>
   </form>
   <!--End Form-->
@@ -33,20 +39,23 @@
       <tr>
         <td>ID</td>
         <td>Name</td>
-        <td>Action Commands</td>
+        <td>Age</td>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="user in users">
         <td>
-          {{user.id}}
+          <a href="#!/crud/{{user.id}}">{{user.id}}</a>
         </td>
         <td>
           {{user.name}}
         </td>
         <td>
-          <button class="btn btn-success btn-sm" ng-click="editUser(user)">Edit</button>
-          <button class="btn btn-danger btn-sm" ng-click="deleteUser(user)">Delete</button>
+          {{user.age}}
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm" ng-click="crud.editUser(user)">Edit</button>
+          <button class="btn btn-danger btn-sm" ng-click="crud.deleteUser(user)">Delete</button>
         </td>
       </tr>
     </tbody>

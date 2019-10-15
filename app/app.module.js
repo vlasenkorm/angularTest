@@ -6,8 +6,10 @@ angular
     'ngRoute',
     'pascalprecht.translate',
     'core',
+    'home',
     'phoneDetail',
     'phoneList',
-    'crud',
-    'crud-http'
+    'crud-http',
+    'crud-detail',
+    'about'
   ]);

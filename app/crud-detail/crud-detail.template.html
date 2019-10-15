@@ -1,0 +1,26 @@
+<div ng-controller = 'CrudDetaiController as detail'>
+<h4>Users List</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Action Commands</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td>
+          {{detail.user.id}}
+        </td>
+        <td>
+          {{detail.user.name}}
+        </td>
+        <td>
+          {{detail.user.age}}
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
