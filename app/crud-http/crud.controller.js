@@ -1,172 +1,89 @@
-// Code goes here
-var myApp = angular.module('crud-http', []);
-myApp.controller('studentController', ['$scope', '$http', function($scope, $http) {
-
-  //Buttons Settings
-  $scope.submit = true;
-  $scope.update = false;
-  $scope.cancel = false;
-  $scope.userid = true;
-
-  //Getting Users List
-  //$http GET function
-  $http({
-    method: 'GET',
-    url: 'https://jsonplaceholder.typicode.com/users'
-
-  }).then(function successCallback(response) {
-
-    $scope.users = response.data;
-
-  }, function errorCallback(response) {
-
-    alert("Error. Try Again!");
-
-  });
+{
+  'use strict';
 
 
-  //Create New User
-  $scope.createUser = function() {
+  angular
+    .module('crud-http')
+    .controller('CrudController', CrudController);
 
-    //$http POST function
-    $http({
+  CrudController.$inject = ['$scope', 'dataservice']
 
-      method: 'POST',
-      url: 'https://jsonplaceholder.typicode.com/users',
-      data: $scope.user
+  function CrudController($scope, dataservice) {
+    let vm = this;
+    vm.createUser = addUsers;
+    vm.deleteUser = deleteUser;
+    vm.updateUser = updateUser;
+    vm.cancelUpdatee = cancelUpdatee;
+    vm.editUser = editUser;
 
-    }).then(function successCallback(response) {
+    //initial
+    vm.submit = true;
+    vm.update = false;
+    vm.cancel = false;
+    vm.userid = false;
+    getDataList();
 
-      $scope.users.push(response.data);
-      alert("User has created Successfully")
-
-    }, function errorCallback(response) {
-
-      alert("Error. while created user Try Again!");
-
-    });
-
-  };
-
-
-  //Update User
-  $scope.updateUser = function() {
-
-    //$http PUT function
-    $http({
-
-      method: 'PUT',
-      url: 'https://jsonplaceholder.typicode.com/users/' + $scope.user.id,
-      data: $scope.user
-
-    }).then(function successCallback(response) {
-
-      alert("User has updated Successfully")
-
-    }, function errorCallback(response) {
-
-      alert("Error. while updating user Try Again!");
-
-    });
-
-  };
+    //Edit User
+    function editUser(user) {
+      console.log('edit start');
+      vm.user = user;
+      vm.submit = false;
+      vm.update = true;
+      vm.cancel = true;
+      vm.userid = false;
+    };
+    //cancel Update
+    function cancelUpdatee() {
+      console.log('cancel edit');
+      vm.user = null;
+      vm.submit = true;
+      vm.update = false;
+      vm.cancel = false;
+      vm.userid = false;
+    };
 
 
-  //Delete User
-  $scope.deleteUser = function(user) {
+    //Update User
+    function updateUser() {
+      return dataservice.updateSelectedUser(vm.user)
+        .then(function (data) {
+          getDataList();
+          cancelUpdatee();
+          return data;
+        });
 
-    //$http DELETE function
-    $http({
+    }
 
-      method: 'DELETE',
-      url: 'https://jsonplaceholder.typicode.com/users/' + user.id
+    //Delete User
+    function deleteUser(user) {
+      return dataservice.deleteUserFromList(user.id)
+        .then(function (data) {
+          getDataList();
+          return data;
+        });
 
-    }).then(function successCallback(response) {
+    }
 
-      alert("User has deleted Successfully");
-      var index = $scope.users.indexOf(user);
-      $scope.users.splice(index, 1);
-
-    }, function errorCallback(response) {
-
-      alert("Error. while deleting user Try Again!");
-
-    });
-
-  };
-
-  //Set $scope on Edit button click
-  $scope.editUser = function(user) {
-
-    $scope.user = user;
-    $scope.submit = false;
-    $scope.update = true;
-    $scope.cancel = true;
-    $scope.userid = false;
-
-  };
+    //Get User List
+    function getDataList() {
+      return dataservice.getDataListUsers()
+        .then(function (data) {
+          $scope.users = data;
+          return $scope.users;
+        });
+    }
 
 
-  //cancel Uodate
-  $scope.cancelUpdate = function() {
-    $scope.user = null;
-    $scope.submit = true;
-    $scope.update = false;
-    $scope.cancel = false;
-    $scope.userid = true;
-  };
+    //Create New User
+    function addUsers() {
+      return dataservice.addUserToList(vm.user)
+        .then(function (data) {
+          getDataList();
+          return data;
+        });
+    }
 
-  //////////////////Shortcut methods for $http//////
-
-  //$http GET
-  //$http.get('https://jsonplaceholder.typicode.com/users', function successCallback(response) {
-  //
-  //  alert("User has updated Successfully")
-  //
-  //}, function errorCallback(response) {
-  //
-  //  alert("Error. while updating user Try Again!");
-  //
-  //});
+  }
 
 
-  //$http POST
-  //$http.post('https://jsonplaceholder.typicode.com/users', $scope.user, function successCallback(response) {
-  //
-  //  $scope.users.push(response.data);
-  //alert("User has created Successfully")
-  //
-  //}, function errorCallback(response) {
-  //
-  //  alert("Error. while created user Try Again!");
-  //
-  //});
-
-
-  //$http PUT
-  //$htp.put('https://jsonplaceholder.typicode.com/users/' + $scope.user.id, $scope.user, function successCallback(response) {
-  //
-  //  alert("User has updated Successfully")
-  //
-  //}, function errorCallback(response) {
-  //
-  //  alert("Error. while updating user Try Again!");
-  //
-  //});
-
-
-  //$http DELETE
-  //$http.delete('https://jsonplaceholder.typicode.com/users/' + user.id, function successCallback(response) {
-  //
-  //  alert("User has deleted Successfully");
-  //var index = $scope.users.indexOf(user);
-  //$scope.users.splice(index, 1);
-  //
-  //  }, function errorCallback(response) {
-  //
-  //  alert("Error. while deleting user Try Again!");
-  //
-  //  });
-
-
-}]);
+}
